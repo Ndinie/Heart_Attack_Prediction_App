@@ -38,13 +38,6 @@ col1, col2 = st.columns(2)
 with col1:
     st.title('Diabetes Prediction App')
     st.write('The data for the following example is originally from the National Institute of Diabetes and Digestive and Kidney Diseases and contains information on females at least 21 years old of Pima Indian heritage. This is a sample application and cannot be used as a substitute for real medical advice.')
-    video_file = open('diabetes.mp4', 'rb')
-    video_bytes = video_file.read()
-    st.video(video_bytes)
-
-    my_expander = st.expander(label='The Awesome Team Behind This App')
-    with my_expander:'Intan, Chee Ann, Dinie, N, Warren(Not a real name)!'
-
 
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
