@@ -11,16 +11,21 @@ Thus, clinicians believe that prevention of heart attack is always better than c
 This project can be run via [Google Colab]([https://colab.research.google.com/drive/1T0dhh7LAojDREjf9otVbAjLyhqvEdl2B?usp=sharing](https://colab.research.google.com/?utm_source=scs-index)) with the help of GPU and without additional modules installation.
 
 # How to use the project
-You can access the full codes [Heart_ Attack_Prediction_main](https://colab.research.google.com/drive/10TdIMgB3o8LG12AfzT1ECkHpEu-iyA0z?usp=sharing) to testing it out.
+You can access the full codes [Heart_ Attack_Prediction_main](https://colab.research.google.com/drive/10TdIMgB3o8LG12AfzT1ECkHpEu-iyA0z?usp=sharing) to test it out.
 
-So let us see if you could achieve higher than my accuracy!
+After training the dataset, we able to acquire its classification report as below!
 
 ![Classification Report](https://github.com/Ndinie/Heart_Attack_Prediction_App/blob/main/static/classification-report.png)
 
-Enjoy!
+Even with this accuracy rate, we able to achieve almost 90% accuracy on our test data as below:
+
+![Test-data-3](https://github.com/Ndinie/Heart_Attack_Prediction_App/blob/main/static/Test-data-3.png)
+
+But there is also possibilities that our model predict the test data incorrectly.
+Thus to increase the accuracy, we can add more sample data to test on or we can even finetune our hyperparameter of our pipelines.
 
 # Credits
-This dataset is provided by [RASHIK RAHMAN](https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset)
+Great appreciation to [RASHIK RAHMAN](https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset) for providing this dataset!
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
