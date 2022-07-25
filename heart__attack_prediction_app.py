@@ -36,19 +36,22 @@ from PIL import Image
 col1, col2 = st.columns(2)
 
 with col1:
-    st.title('Diabetes Prediction App')
-    st.write('The data for the following example is originally from the National Institute of Diabetes and Digestive and Kidney Diseases and contains information on females at least 21 years old of Pima Indian heritage. This is a sample application and cannot be used as a substitute for real medical advice.')
-
+    st.title('Heart Attack Prediction App')
+    st.write('This App is to analyse whether you have heart attack or not')
+    
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
     with st.form("Diabetes Predictor App"):
-        age =           st.number_input("Age in Years", 1, 150, 25, 1)
-        glucose =       st.slider("Glucose Level", 0, 200, 25, 1)
-        skinthickness = st.slider("Skin Thickness", 0, 99, 20, 1)
-        bloodpressure = st.slider('Blood Pressure', 0, 122, 69, 1)
-        insulin =       st.slider("Insulin", 0, 846, 79, 1)
-        bmi =           st.slider("BMI", 0.0, 67.1, 31.4, 0.1)
-        dpf =           st.slider("Diabetics Pedigree Function", 0.000, 2.420, 0.471, 0.001)
+        age = st.number_input("Age in Years", 1, 150, 25, 1)
+        sex = st.slider("sex", 0, 1)
+        exang = st.slider("exercise induced angina", 0, 99, 20, 1)
+        number of major vessels = st.slider('number of major vessels', 0, 122, 69, 1)
+        chest pain indication = st.slider("chest pain indication", 0, 846, 79, 1)
+        resting blood pressure = st.slider("resting blood pressure", 0.0, 67.1, 31.4, 0.1)
+        cholesterol level = st.slider("cholesterol level", 0.000, 2.420, 0.471, 0.001)
+        cholesterol level = st.slider("fasting blood sugar", 0.000, 2.420, 0.471, 0.001)
+        cholesterol level = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
+        cholesterol level = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
 
         row = [glucose, bloodpressure, skinthickness, insulin, bmi, dpf, age]
 
@@ -60,10 +63,10 @@ with col2:
             outcome=model.predict(new_data)[0]
 
             if outcome==0:
-                st.subheader("You're healthy! Keep it Up!!")
+                st.subheader("You have no heart attack! Keep it Up!!")
                 image = Image.open('healthy.png')
                 st.image(image)
             else:
-                st.subheader('From our database, you are not healthy so go work yourself out!')
+                st.subheader('From our database, you are predicted to have a heart attack.')
                 image1 = Image.open('nothealthy.png')
                 st.image(image1)
