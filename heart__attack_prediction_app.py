@@ -37,12 +37,13 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.title('Heart Attack Prediction App')
-    st.write('This App is to analyse whether you have heart attack or not')
+    st.write('This Heart Attack Prediction App is to analyse whether you have heart attack or not')
+    st.image('https://github.com/Ndinie/Heart_Attack_Prediction_App/blob/main/static/heart-image.jpg')
     
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
     with st.form("Diabetes Predictor App"):
-        age = st.number_input("Age in Years", 1, 150, 25, 1)
+        age = st.number_input("Age", 1, 150, 25, 1)
         sex = st.slider("sex", 0, 1)
         exang = st.slider("exercise induced angina", 0, 99, 20, 1)
         ca = st.slider('number of major vessels', 0, 122, 69, 1)
@@ -52,9 +53,6 @@ with col2:
         fbs = st.slider("fasting blood sugar", 0.000, 2.420, 0.471, 0.001)
         rest_ecg = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
         thalach = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
-
-        row = [age, sex, exang, ca, cp, trtbps, chol, fbs, rest_ecg, thalach]
-
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
