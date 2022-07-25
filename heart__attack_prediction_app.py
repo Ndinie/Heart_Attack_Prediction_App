@@ -38,7 +38,8 @@ col1, col2 = st.columns(2)
 with col1:
     st.title('Heart Attack Prediction App')
     st.write('This Heart Attack Prediction App is to analyse whether you have heart attack or not')
-    st.image('https://github.com/Ndinie/Heart_Attack_Prediction_App/blob/main/static/heart-image.jpg')
+    image = Image.open('heart-image.jpg')
+    st.image(image, caption='Heart Attack Wallpaper')
     
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
