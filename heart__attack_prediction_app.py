@@ -24,7 +24,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-MODEL_PATH = os.path.join(os.getcwd(), 'best_estimator.pkl')
+MODEL_PATH = os.path.join(os.getcwd(),'model', 'best_estimator.pkl')
 with open(MODEL_PATH, 'rb') as file:
   model = pickle.load(file)
 
