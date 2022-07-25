@@ -57,6 +57,8 @@ with col2:
         slp = st.slider('Slope', 0, 2)
         caa = st.slider('Number of Major Vessels', 0, 3)
         thall = st.slider('Thalium Stress Test result', 0, 2, 3)
+        
+        row = [age, sex, cp, trtbps, chol, fbs, rest_ecg, thalach, exng, oldpeak, slp, caa, thall]
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
