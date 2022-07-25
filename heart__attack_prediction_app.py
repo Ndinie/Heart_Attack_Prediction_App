@@ -64,9 +64,6 @@ with col2:
 
             if outcome==0:
                 st.subheader("You have no heart attack! Keep it Up!!")
-                image = Image.open('healthy.png')
-                st.image(image)
             else:
                 st.subheader('From our database, you are predicted to have a heart attack.')
-                image1 = Image.open('nothealthy.png')
-                st.image(image1)
+
