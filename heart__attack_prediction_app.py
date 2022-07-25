@@ -38,7 +38,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.title('Heart Attack Prediction App')
     st.write('This Heart Attack Prediction App is to analyse whether you have heart attack or not')
-    image = Image.open('heart-image.jpg')
+    image = Image.open('heart-image.jpg', output_format="auto")
     st.image(image)
     
 with col2:
