@@ -44,16 +44,17 @@ with col1:
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
     with st.form("Diabetes Predictor App"):
-        age = st.number_input("Age", 1, 150, 25, 1)
+        age = st.number_input("Age", 1, 100)
         sex = st.slider("sex", 0, 1)
-        exang = st.slider("exercise induced angina", 0, 99, 20, 1)
-        ca = st.slider('number of major vessels', 0, 122, 69, 1)
-        cp = st.slider("chest pain indication", 0, 846, 79, 1)
-        trtbps = st.slider("resting blood pressure", 0.0, 67.1, 31.4, 0.1)
-        chol = st.slider("cholesterol level", 0.000, 2.420, 0.471, 0.001)
-        fbs = st.slider("fasting blood sugar", 0.000, 2.420, 0.471, 0.001)
-        rest_ecg = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
-        thalach = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
+        cp = st.sidebar.selectbox('Chest Pain Type ( 0 = asymptomatic ; 1 = typical angina; 2 = atypical angina; 3 = non-anginal pain)',(0,1,2,3))
+        trtbps = st.slider("resting blood pressure", 50, 200)
+        chol = st.slider("cholesterol level", 100, 600)
+        fbs = st.slider("fasting blood sugar", 0, 1)
+        rest_ecg = st.slider("resting electrocardiographic results", 0, 1, 2)
+        thalach = st.slider("maximum heart rate", 60, 220)
+        exng = st.slider("exercise induced angina", 0, 1)
+        oldpeak = st.sidebar.slider("ST depression induced by exercise relative to rest",0.0,7.0,0.8,0.1)
+        caa = st.slider('number of major vessels', 0.0, 3.0)
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
