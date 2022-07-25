@@ -53,7 +53,7 @@ with col2:
         rest_ecg = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
         thalach = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
 
-        row = [glucose, bloodpressure, skinthickness, insulin, bmi, dpf, age]
+        row = [age, sex, exang, ca, cp, trtbps, chol, fbs, rest_ecg, thalach]
 
 
         # Every form must have a submit button.
