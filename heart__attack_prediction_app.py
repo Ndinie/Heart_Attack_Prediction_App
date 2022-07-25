@@ -38,14 +38,13 @@ col1, col2 = st.columns(2)
 with col1:
     st.title('Heart Attack Prediction App')
     st.write('This Heart Attack Prediction App is to analyse whether you have heart attack or not')
-    image = Image.open('heart-image.jpg', output_format="auto")
-    st.image(image)
+    image = Image.open(os.path.join(os.getcwd(),'static','heart-image.jpg'))
+    st.image(image, use_column_width=True)
     
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
     with st.form("Diabetes Predictor App"):
         age = st.number_input("Age", 1, 150, 25, 1)
-        sex = st.slider("sex", 0, 1)
         exang = st.slider("exercise induced angina", 0, 99, 20, 1)
         ca = st.slider('number of major vessels', 0, 122, 69, 1)
         cp = st.slider("chest pain indication", 0, 846, 79, 1)
