@@ -70,4 +70,3 @@ with col2:
                 st.subheader("You have no heart attack! Keep it Up!!")
             else:
                 st.subheader('From our database, you are predicted to have a heart attack.')
-
