@@ -37,22 +37,22 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.title('Heart Attack Prediction App')
-    st.write('This Heart Attack Prediction App is to analyse whether you have heart attack or not')
+    st.write('This Heart Attack Prediction App is to analyse whether you have the chance getting a heart attack or not')
     image = Image.open(os.path.join(os.getcwd(),'static','heart-image.jpg'))
     st.image(image, use_column_width=True)
     
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
-    with st.form("Diabetes Predictor App"):
+    with st.form("Heart Attack Prediction App"):
         age = st.number_input("Age", 1, 100)
-        sex = st.radio("Sex", 0, 1)
+        sex = st.slider("Sex", 0, 1)
         cp = st.selectbox('Chest Pain Type (0 = Typical Angina, 1 = Atypical Angina, 2 = Non-anginal Pain, 3 = Asymptomatic)',(0,1,2,3))
         trtbps = st.slider("Resting Blood Pressure", 0, 200)
         chol = st.slider("Cholesterol Level", 100, 600)
-        fbs = st.radio("Fasting Blood Sugar (1 = True, 0 = False) ", 0, 1)
+        fbs = st.slider("Fasting Blood Sugar (1 = True, 0 = False) ", 0, 1)
         rest_ecg = st.slider("Resting Electrocardiographic Results (0 = Normal, 1 = ST-T wave normality, 2 = Left ventricular hypertrophy) ", 0, 1, 2)
         thalach = st.slider("Maximum Heart Rate", 0, 220)
-        exng = st.radio("Exercise Induced Angina (1 = Yes, 0 = No)", 0, 1)
+        exng = st.slider("Exercise Induced Angina (1 = Yes, 0 = No)", 0, 1)
         oldpeak = st.slider("ST Depression Induced by Exercise Relative to rest",0.0,7.0,0.8,0.1)
         slp = st.slider('Slope', 0, 2)
         caa = st.slider('Number of Major Vessels', 0, 3)
