@@ -46,16 +46,16 @@ with col2:
     with st.form("Diabetes Predictor App"):
         age = st.number_input("Age", 1, 100)
         sex = st.slider("sex", 0, 1)
-        cp = st.sidebar.selectbox('Chest Pain Type ( 0 = asymptomatic ; 1 = typical angina; 2 = atypical angina; 3 = non-anginal pain)',(0,1,2,3))
-        trtbps = st.slider("resting blood pressure", 50, 200)
+        cp = st.sidebar.selectbox('Chest Pain Type (0 = Typical Angina, 1 = Atypical Angina, 2 = Non-anginal Pain, 3 = Asymptomatic)',(0,1,2,3))
+        trtbps = st.slider("resting blood pressure", 0, 200)
         chol = st.slider("cholesterol level", 100, 600)
-        fbs = st.slider("fasting blood sugar", 0, 1)
-        rest_ecg = st.slider("resting electrocardiographic results", 0, 1, 2)
-        thalach = st.slider("maximum heart rate", 60, 220)
+        fbs = st.slider("fasting blood sugar (1 = True, 0 = False) ", 0, 1)
+        rest_ecg = st.slider("resting electrocardiographic results (0 = Normal, 1 = ST-T wave normality, 2 = Left ventricular hypertrophy) ", 0, 1, 2)
+        thalach = st.slider("maximum heart rate", 0, 220)
         exng = st.slider("exercise induced angina", 0, 1)
         oldpeak = st.sidebar.slider("ST depression induced by exercise relative to rest",0.0,7.0,0.8,0.1)
-        thall = st.slider('number of major vessels', 0.1, 0.2, 3.0)
-        caa = st.slider('number of major vessels', 0.0, 3.0)
+        thall = st.slider('Thalium Stress Test result', 0, 2, 3)
+        caa = st.slider('number of major vessels', 0, 3)
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
