@@ -45,13 +45,13 @@ with col2:
         age = st.number_input("Age in Years", 1, 150, 25, 1)
         sex = st.slider("sex", 0, 1)
         exang = st.slider("exercise induced angina", 0, 99, 20, 1)
-        number of major vessels = st.slider('number of major vessels', 0, 122, 69, 1)
-        chest pain indication = st.slider("chest pain indication", 0, 846, 79, 1)
-        resting blood pressure = st.slider("resting blood pressure", 0.0, 67.1, 31.4, 0.1)
-        cholesterol level = st.slider("cholesterol level", 0.000, 2.420, 0.471, 0.001)
-        cholesterol level = st.slider("fasting blood sugar", 0.000, 2.420, 0.471, 0.001)
-        cholesterol level = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
-        cholesterol level = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
+        ca = st.slider('number of major vessels', 0, 122, 69, 1)
+        cp = st.slider("chest pain indication", 0, 846, 79, 1)
+        trtbps = st.slider("resting blood pressure", 0.0, 67.1, 31.4, 0.1)
+        chol = st.slider("cholesterol level", 0.000, 2.420, 0.471, 0.001)
+        fbs = st.slider("fasting blood sugar", 0.000, 2.420, 0.471, 0.001)
+        rest_ecg = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
+        thalach = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
 
         row = [glucose, bloodpressure, skinthickness, insulin, bmi, dpf, age]
 
