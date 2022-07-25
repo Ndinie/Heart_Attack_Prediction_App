@@ -54,8 +54,9 @@ with col2:
         thalach = st.slider("Maximum Heart Rate", 0, 220)
         exng = st.slider("Exercise Induced Angina (1 = Yes, 0 = No)", 0, 1)
         oldpeak = st.sidebar.slider("ST Depression Induced by Exercise Relative to rest",0.0,7.0,0.8,0.1)
-        thall = st.slider('Thalium Stress Test result', 0, 2, 3)
+        slp = st.slider('Slope', 0, 2)
         caa = st.slider('Number of Major Vessels', 0, 3)
+        thall = st.slider('Thalium Stress Test result', 0, 2, 3)
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
