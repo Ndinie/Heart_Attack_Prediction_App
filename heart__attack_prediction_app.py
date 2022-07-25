@@ -46,7 +46,7 @@ with col2:
     with st.form("Heart Attack Prediction App"):
         age = st.number_input("Age", 1, 100)
         trtbps = st.slider("Resting Blood Pressure", 0, 200)
-        chol = st.slider("Cholesterol Level", 100, 600)
+        chol = st.slider("Cholesterol Level", 100, 400)
         thalach = st.slider("Maximum Heart Rate", 0, 220)
         oldpeak = st.slider("ST Depression Induced by Exercise Relative to rest",0.0, 7.0)
         
@@ -59,6 +59,6 @@ with col2:
             outcome=model.predict(new_data)[0]
 
             if outcome==0:
-                st.subheader("You have no heart attack! Keep it Up!!")
+                st.subheader("You have low risk getting a heart attack! Keep it up!!")
             else:
                 st.subheader('From our database, you are predicted to have a heart attack.')
