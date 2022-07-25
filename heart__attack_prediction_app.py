@@ -50,7 +50,7 @@ with col2:
         trtbps = st.slider("Resting Blood Pressure", 0, 200)
         chol = st.slider("Cholesterol Level", 100, 600)
         fbs = st.selectbox("Fasting Blood Sugar (1 = True, 0 = False) ", (0, 1))
-        rest_ecg = st.slider("Resting Electrocardiographic Results (0 = Normal, 1 = ST-T wave normality, 2 = Left ventricular hypertrophy) ", (0, 1, 2))
+        rest_ecg = st.selectbox("Resting Electrocardiographic Results (0 = Normal, 1 = ST-T wave normality, 2 = Left ventricular hypertrophy) ", (0, 1, 2))
         thalach = st.slider("Maximum Heart Rate", 0, 220)
         exng = st.selectbox("Exercise Induced Angina (1 = Yes, 0 = No)", (0, 1))
         oldpeak = st.slider("ST Depression Induced by Exercise Relative to rest",0.0, 7.0, 0.8, 0.1)
