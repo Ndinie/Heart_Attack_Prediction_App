@@ -17,31 +17,62 @@ def install(package):
 install('pickle-mixin')
 install('sklearn')
 
-# testing form
-import os
 import pickle
-import pandas as pd
+import os
 import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
+
+MODEL_PATH=os.path.join(os.getcwd(),'model','best_estimator.pkl')
+with open(MODEL_PATH,'rb') as file:
+    model=pickle.load(file)
+
 import streamlit as st
+import joblib
+import pandas as pd
+from PIL import Image
 
-MODEL_PATH = os.path.join(os.getcwd(),'model', 'best_estimator.pkl')
-with open(MODEL_PATH, 'rb') as file:
-  model = pickle.load(file)
+st.set_page_config( page_title="Diabetes Prediction App", page_icon=":muscle:", layout="wide")
 
-with st.form("Heart Attack Predictor App"):
-    chol=st.selectbox('Cholesterol Level: 1: normal, 2: above normal, 3: well above normal',(1,2,3))
-    sys=st.number_input('Systolic BP')
-    dia=st.number_input('Diastolic BP')
+col1, col2 = st.columns(2)
 
-    # Every form must have a submit button.
-    submitted = st.form_submit_button("Submit")
-    if submitted:
-        new_data=np.expand_dims([chol,sys,dia],axis=0)
-        outcome=model.predict(new_data)[0]
+with col1:
+    st.title('Diabetes Prediction App')
+    st.write('The data for the following example is originally from the National Institute of Diabetes and Digestive and Kidney Diseases and contains information on females at least 21 years old of Pima Indian heritage. This is a sample application and cannot be used as a substitute for real medical advice.')
+    video_file = open('diabetes.mp4', 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes)
 
-        if outcome==0:
-            st.write('Congrats! You are healthy!!')
-            st.balloons()
-        else:
-            st.write('Thats not good, You need to start exercising!!')
-            st.snow()
+    my_expander = st.expander(label='The Awesome Team Behind This App')
+    with my_expander:'Intan, Chee Ann, Dinie, N, Warren(Not a real name)!'
+
+    
+
+with col2:
+    st.subheader('Please fill in the details of the person under consideration and click on the button below!')
+    with st.form("Diabetes Predictor App"):
+        age =           st.number_input("Age in Years", 1, 150, 25, 1)
+        glucose =       st.slider("Glucose Level", 0, 200, 25, 1)
+        skinthickness = st.slider("Skin Thickness", 0, 99, 20, 1)
+        bloodpressure = st.slider('Blood Pressure', 0, 122, 69, 1)
+        insulin =       st.slider("Insulin", 0, 846, 79, 1)
+        bmi =           st.slider("BMI", 0.0, 67.1, 31.4, 0.1)
+        dpf =           st.slider("Diabetics Pedigree Function", 0.000, 2.420, 0.471, 0.001)
+
+        row = [glucose, bloodpressure, skinthickness, insulin, bmi, dpf, age]
+
+
+        # Every form must have a submit button.
+        submitted = st.form_submit_button("Analyse")
+        if submitted:
+            new_data=np.expand_dims(row,axis=0)
+            outcome=model.predict(new_data)[0]
+
+            if outcome==0:
+                st.subheader("You're healthy! Keep it Up!!")
+                image = Image.open('healthy.png')
+                st.image(image)
+            else:
+                st.subheader('From our database, you are not healthy so go work yourself out!')
+                image1 = Image.open('nothealthy.png')
+                st.image(image1)
