@@ -45,6 +45,7 @@ with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
     with st.form("Diabetes Predictor App"):
         age = st.number_input("Age", 1, 150, 25, 1)
+        sex = st.slider("sex", 0, 1)
         exang = st.slider("exercise induced angina", 0, 99, 20, 1)
         ca = st.slider('number of major vessels', 0, 122, 69, 1)
         cp = st.slider("chest pain indication", 0, 846, 79, 1)
