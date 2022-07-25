@@ -20,7 +20,6 @@ import matplotlib.pyplot as plt
 from sklearn.svm import SVC
 from sklearn import pipeline
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import confusion_matrix
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LinearRegression
@@ -30,149 +29,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.metrics import confusion_matrix, classification_report 
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-
-HA_CSV_PATH = os.path.join(os.getcwd(), 'heart.csv')
-ha_df = pd.read_csv(HA_CSV_PATH)
-
-#column_names = ['ID', 'AGE', 'GENDER', 'HEIGHT', 'WEIGHT', 'AP_HI', 'AP_LO', 'CHOLESTEROL', 'GLUC', 'SMOKE', 'ALCO', 'ACTIVE', 'CARDIO']
-
-"""#STEP 2) DATA VISUALIZATION / INSPECTION"""
-
-ha_df.head()
-
-ha_df.info()
-
-"""check data distribution"""
-
-ha_df.describe().T
-
-ha_df['thall'] = ha_df['thall'].replace(0,np.nan) #replace 0 as Nans
-ha_df['caa'] = ha_df['caa'].replace(4,np.nan) #replace 4 as Nans
-
-"""check NaNs"""
-
-ha_df.isna().sum()
-
-"""We can observe that there are 7 NaNs identified from caa(5) and thall(2).
-
-check duplicates
-"""
-
-ha_df.duplicated().sum()
-
-ha_df[ha_df.duplicated()]
-
-"""We discover that there are 1 duplicate which is row 164.
-
-check outliers
-"""
-
-ha_df.boxplot()
-
-"""As shown above, there are outliers detected."""
-
-ha_df.head()
-
-categorical_col = ['sex', 'cp', 'fbs', 'restecg', 'exng', 'slp', 'caa', 'thall', 'output'] # CATEGORICAL FEATURES
-continouos_col = ['age', 'trtbps', 'chol', 'thalachh', 'oldpeak'] # CONTINOUS FEATURES
-
-"""for categorical data"""
-
-for i in categorical_col:
-  plt.figure()
-  sns.countplot(ha_df[i])
-  plt.show()
-
-"""for continouos data"""
-
-for i in continouos_col:
-  plt.figure()
-  sns.displot(ha_df[i])
-  plt.show()
-
-"""#STEP 3) DATA CLEANING"""
-
-# # remove id column
-# df = df.drop(labels=['ID'], axis=1)
-
-"""1) Outliers (-ve & very huge number)
-
-Remove outliers
-"""
-
-# (df['AP_HI']>370).sum() # 39 smaples more than 370 Systolic
-
-# df['AP_HI'][df['AP_LO']>370]
-
-"""Clipping """
-
-# df['AP_HI'] = df['AP_HI'].clip(80,370)
-# df['AP_LO'] = df['AP_LO'].clip(60,370)
-# df.describe().T
-
-# # for continous data
-# for i in con:
-#   plt.figure()
-#   sns.displot(df[i])
-#   plt.show()
-
-"""Between these methods for fillna; its better to apply clip as ..
-
-2) NaNs
-"""
-
-import missingno as msno
-
-msno.matrix(ha_df)
-msno.bar(ha_df)
-
-ha_df.boxplot()
-
-#Dealing with Missing Values, Method 2 - Simple Imputation
-#Filling NAN with median or mode, depending on datasets
-for i in categorical_col:
-  ha_df[i] = ha_df[i].fillna(ha_df[i].mode()[0])
-
-for i in continouos_col:
-  ha_df[i] = ha_df[i].fillna(ha_df[i].median())
-
-ha_df.isna().sum()
-
-"""KNN Imputation"""
-
-# from sklearn.impute import KNNImputer
-
-# knn_imputer = KNNImputer()
-# df_knn = knn_imputer.fit_transform(ha_df)
-
-# df_knn = pd.DataFrame(df_knn,index=None) #to convert into DataFrame format
-# df_knn.columns = ha_df.columns
-# df_knn.describe().T
-# df_knn.isna().sum()
-
-# # # import numpy as np
-# # # df_knn['CHOLESTEROL'] = np.floor(df_knn['CHOLESTEROL']).astype('int')
-# # # df_knn['ALCO'] = np.floor(df_knn['ALCO']).astype('int')
-
-# ha_df.describe().T
-
-# df_knn.isna().sum() # to get the sum of NaNs in every column
-
-"""3) Duplicated"""
-
-ha_df.duplicated().sum()
-
-ha_df.drop_duplicates
-
-ha_df.describe()[1:].T
-
-"""#STEP 4) FEATURE SELECTION
-
-Target - cardio : categorical
-
-con & cat
-"""
 
 def cramers_corrected_stat(confusion_matrix):
     """ calculate Cramers V statistic for categorial-categorial association.
@@ -187,6 +45,87 @@ def cramers_corrected_stat(confusion_matrix):
     rcorr = r - ((r-1)**2)/(n-1)
     kcorr = k - ((k-1)**2)/(n-1)
     return np.sqrt(phi2corr / min( (kcorr-1), (rcorr-1)))
+
+HA_CSV_PATH = os.path.join(os.getcwd(), 'heart.csv')
+ha_df = pd.read_csv(HA_CSV_PATH)
+
+"""#STEP 2) DATA VISUALIZATION / INSPECTION"""
+
+ha_df.head()
+
+ha_df.info()
+
+"""CHECK DATA DISTRIBUTION"""
+
+ha_df.describe().T
+
+ha_df['thall'] = ha_df['thall'].replace(0,np.nan) 
+ha_df['caa'] = ha_df['caa'].replace(4,np.nan)
+
+"""This will replace 0 and 4 to NaNs
+
+CHECK NaNs
+"""
+
+ha_df.isna().sum()
+
+"""We can observe that there are 7 NaNs identified from caa(5) and thall(2).
+
+CHECK DUPLICATED
+"""
+
+ha_df.duplicated().sum()
+
+ha_df[ha_df.duplicated()]
+
+"""We discover that there are 1 duplicate which is row 164.
+
+CHECK OUTLIERS
+"""
+
+ha_df.boxplot()
+
+"""As shown above, there are outliers detected."""
+
+ha_df.head()
+
+categorical_col = ['sex', 'cp', 'fbs', 'restecg', 'exng', 'slp', 'caa', 'thall', 'output'] # CATEGORICAL FEATURES
+continouos_col = ['age', 'trtbps', 'chol', 'thalachh', 'oldpeak'] # CONTINOUS FEATURES
+
+"""GRAPHS FOR CATEGORICAL DATA"""
+
+for i in categorical_col:
+  plt.figure()
+  sns.countplot(ha_df[i])
+  plt.show()
+
+"""GRAPHS FOR CONTIUNOUS DATA"""
+
+for i in continouos_col:
+  plt.figure()
+  sns.displot(ha_df[i])
+  plt.show()
+
+"""#STEP 3) DATA CLEANING
+
+REMOVE NANs
+"""
+
+for i in categorical_col:
+  ha_df[i] = ha_df[i].fillna(ha_df[i].mode()[0])
+
+for i in continouos_col:
+  ha_df[i] = ha_df[i].fillna(ha_df[i].median())
+
+ha_df.isna().sum()
+
+"""REMOVE DUPLICATES"""
+
+ha_df.duplicated().sum()
+
+ha_df.drop_duplicates
+
+"""#STEP 4) FEATURE SELECTION"""
 
 X = ha_df.drop(labels='output', axis=1)
 y = ha_df['output'].astype(int)
@@ -216,7 +155,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     test_size=0.3,
                                                     random_state=123)
 
-"""MODEL DEVELOPMENT --> PIPELINES
+"""# MODEL DEVELOPMENT
 
 *Logistic Regression*
 """
@@ -316,7 +255,7 @@ for i, pipe in enumerate(pipelines):
 print('The best scaler and classifier for heart dataset is {} with accuracy of {}'
 .format(best_pipeline.steps,best_accuracy))
 
-"""GridSearchCV --> save the best estimator"""
+"""GridSearchCV"""
 
 pipeline_ss_svc = Pipeline([
                            ('Standard_Scaler',StandardScaler()), 
@@ -336,7 +275,12 @@ grid = grid_search.fit(X_train,y_train)
 grid.score(X_test, y_test)
 print(grid.best_params_)
 
-"""MODEL SAVING"""
+grid_predictions = grid.predict(X_test)
+print(confusion_matrix(y_test,grid_predictions))
+
+print(classification_report(y_test,grid_predictions))
+
+"""# MODEL SAVING"""
 
 BEST_ESTIMATOR_SAVE_PATH=os.path.join(os.getcwd(),'best_estimator.pkl')
 
