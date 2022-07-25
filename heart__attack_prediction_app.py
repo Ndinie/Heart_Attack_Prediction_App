@@ -45,20 +45,12 @@ with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
     with st.form("Heart Attack Prediction App"):
         age = st.number_input("Age", 1, 100)
-        sex = st.selectbox("Sex (0 = Female, 1 = Male)", (0, 1))
-        cp = st.selectbox('Chest Pain Type (0 = Typical Angina, 1 = Atypical Angina, 2 = Non-anginal Pain, 3 = Asymptomatic)',(0, 1, 2, 3))
         trtbps = st.slider("Resting Blood Pressure", 0, 200)
         chol = st.slider("Cholesterol Level", 100, 600)
-        fbs = st.selectbox("Fasting Blood Sugar (0 = False, 1 = True) ", (0, 1))
-        rest_ecg = st.selectbox("Resting Electrocardiographic Results (0 = Normal, 1 = ST-T wave normality, 2 = Left ventricular hypertrophy) ", (0, 1, 2))
         thalach = st.slider("Maximum Heart Rate", 0, 220)
-        exng = st.selectbox("Exercise Induced Angina (1 = Yes, 0 = No)", (0, 1))
         oldpeak = st.slider("ST Depression Induced by Exercise Relative to rest",0.0, 7.0)
-        slp = st.selectbox('Slope', (0, 1, 2))
-        caa = st.selectbox('Number of Major Vessels', (0, 1, 2, 3))
-        thall = st.selectbox('Thalium Stress Test result', (0, 1, 2, 3))
         
-        row = [age, sex, cp, trtbps, chol, fbs, rest_ecg, thalach, exng, oldpeak, slp, caa, thall]
+        row = [age, trtbps, chol, thalach, oldpeak]
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
