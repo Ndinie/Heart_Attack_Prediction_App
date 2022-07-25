@@ -37,24 +37,20 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.title('Heart Attack Prediction App')
-    st.write('This App is to analyse whether you have heart attack or not')
+    st.write('This Heart Attack Prediction App is to analyse whether you have the chance getting a heart attack or not')
+    image = Image.open(os.path.join(os.getcwd(),'static','heart-image.jpg'))
+    st.image(image, use_column_width=True)
     
 with col2:
     st.subheader('Please fill in the details of the person under consideration and click on the button below!')
-    with st.form("Diabetes Predictor App"):
-        age = st.number_input("Age in Years", 1, 150, 25, 1)
-        sex = st.slider("sex", 0, 1)
-        exang = st.slider("exercise induced angina", 0, 99, 20, 1)
-        ca = st.slider('number of major vessels', 0, 122, 69, 1)
-        cp = st.slider("chest pain indication", 0, 846, 79, 1)
-        trtbps = st.slider("resting blood pressure", 0.0, 67.1, 31.4, 0.1)
-        chol = st.slider("cholesterol level", 0.000, 2.420, 0.471, 0.001)
-        fbs = st.slider("fasting blood sugar", 0.000, 2.420, 0.471, 0.001)
-        rest_ecg = st.slider("resting electrocardiographic results", 0.000, 2.420, 0.471, 0.001)
-        thalach = st.slider("maximum heart rate", 0.000, 2.420, 0.471, 0.001)
-
-        row = [age, sex, exang, ca, cp, trtbps, chol, fbs, rest_ecg, thalach]
-
+    with st.form("Heart Attack Prediction App"):
+        age = st.number_input("Age", 1, 100)
+        trtbps = st.slider("Resting Blood Pressure", 0, 200)
+        chol = st.slider("Cholesterol Level", 100, 400)
+        thalach = st.slider("Maximum Heart Rate", 0, 220)
+        oldpeak = st.slider("ST Depression Induced by Exercise Relative to rest",0.0, 7.0)
+        
+        row = [age, trtbps, chol, thalach, oldpeak]
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Analyse")
@@ -63,7 +59,6 @@ with col2:
             outcome=model.predict(new_data)[0]
 
             if outcome==0:
-                st.subheader("You have no heart attack! Keep it Up!!")
+                st.subheader("You have low risk getting a heart attack! Keep it up!!")
             else:
                 st.subheader('From our database, you are predicted to have a heart attack.')
-
